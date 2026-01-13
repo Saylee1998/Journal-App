@@ -27,7 +27,7 @@ public class JournalEntryController {
     private UserService userService;
 
 
-    @PostMapping("{userName}")
+    @PostMapping("/{userName}")
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry, @PathVariable String userName){
 
         try {
@@ -42,7 +42,7 @@ public class JournalEntryController {
 
     }
 
-    @GetMapping("{userName}")
+    @GetMapping("/{userName}")
     public ResponseEntity<?> getAllJournalEntriesOfUser(@PathVariable String userName){
         User user = userService.findByUserName(userName);
         List<JournalEntry> allEntries = user.getJournalEntries();
@@ -55,7 +55,7 @@ public class JournalEntryController {
 
     }
 
-    @GetMapping("/{myId}")
+    @GetMapping("id/{myId}")
     public ResponseEntity<JournalEntry> getJournalEntryById(@PathVariable ObjectId myId){
         Optional<JournalEntry> journalEntry =  journalEntryService.findById(myId);
         if(journalEntry.isPresent()){
